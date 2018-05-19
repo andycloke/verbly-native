@@ -12,6 +12,7 @@
     "moduleResolution": "node",
     "noEmitHelpers": true,
     "importHelpers": true,
+    "noImplicitAny": true,
     "strict": true,
     "noImplicitReturns": true
   }

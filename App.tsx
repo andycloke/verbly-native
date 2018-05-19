@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { Container, Content, Header, Text } from 'native-base';
+import MainMenu from './features/menu/components/MainMenu';
 
 import store from './store';
 
@@ -11,7 +12,7 @@ export default class App extends React.Component<{}> {
         <Container>
           <Header />
           <Content>
-            <Text>Test up App.ts to start working on your app!</Text>
+            <MainMenu />
           </Content>
         </Container>
       </Provider>
