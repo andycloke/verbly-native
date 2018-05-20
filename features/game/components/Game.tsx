@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text } from 'react-native';
+import { Text, Header, Content } from 'native-base';
+import { Link } from 'react-router-native';
+
 import {
   ACCENTED_LETTER_MAP,
   DISPLAY_CORRECT_ICON_DURATION,
