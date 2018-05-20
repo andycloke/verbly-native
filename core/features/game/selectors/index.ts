@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { getHighScore } from '../../scores/selectors';
 import { People } from '../../../constants/people';

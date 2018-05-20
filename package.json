@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "@types/jest": "^22.2.2",
+    "@types/moment": "^2.13.0",
     "@types/react": "^16.1.0",
     "@types/react-native": "^0.52.21",
     "@types/react-redux": "^6.0.0",
