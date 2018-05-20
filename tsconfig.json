@@ -15,6 +15,7 @@
     "importHelpers": true,
     "noImplicitAny": true,
     "strict": true,
+    "noUnusedLocals": true,
     "noImplicitReturns": true
   }
 }
