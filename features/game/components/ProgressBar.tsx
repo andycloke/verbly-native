@@ -2,6 +2,8 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Animated, Easing } from 'react-native';
 import { Props } from '../../../core/features/game/containers/ProgressBar';
 
+import { positiveGreen } from './GameCard';
+
 const EASING = Easing.inOut(Easing.ease);
 const EASING_DURATION = 400;
 
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden'
   },
   bar: {
-    backgroundColor: 'rgb(82, 201, 82)',
+    backgroundColor: positiveGreen,
     height: 5
   }
 });

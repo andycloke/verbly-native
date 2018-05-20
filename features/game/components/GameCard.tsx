@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Card, Input, Text, CardItem } from 'native-base';
+import { Card, Input, Text, CardItem, Icon } from 'native-base';
 import { DISPLAY_TEXT } from '../../../core/constants/tenses';
 import SubmitButton from './SubmitButton';
 
@@ -37,22 +37,17 @@ const GameCard = ({
   incorrect,
   handleSubmitClick
 }: Props) => {
-  //   const underlineStyle: { borderBottom?: string } = {};
-  //   const inputStyle: { color?: string; paddingRight: string } = {
-  //     paddingRight: '27px'
-  //   };
-  //   let icon = null;
-  //   if (correct) {
-  //     underlineStyle.borderBottom = `2px solid ${positiveGreen}`;
-  //     inputStyle.color = positiveGreen;
-  //     icon = <CheckIcon color={positiveGreen} />;
-  //   } else if (incorrect) {
-  //     underlineStyle.borderBottom = `2px solid ${negativeRed}`;
-  //     inputStyle.color = negativeRed;
-  //     icon = <CrossIcon color={negativeRed} />;
-  //   }
+  let inputStyle = null;
+  let icon = null;
+  if (correct) {
+    inputStyle = styles.inputCorrect;
+    icon = <Icon name="checkmark" color={positiveGreen} style={styles.icon} />;
+  } else if (incorrect) {
+    inputStyle = styles.inputIncorrect;
+    icon = <Icon name="close" color={negativeRed} style={styles.icon} />;
+  }
   return (
-    <Card>
+    <Card style={styles.card} noShadow>
       <CardItem bordered>
         <Text style={styles.flex1}>Tense</Text>
         <Text style={styles.flex2}>
@@ -68,17 +63,20 @@ const GameCard = ({
       <CardItem bordered>
         <Text style={styles.flex1}>{person}</Text>
         <View style={[styles.flex2, styles.inputButtonCell]}>
-          <Input
-            //   ref={makeAnswerInputRef}
-            autoFocus
-            autoCapitalize="none"
-            autoCorrect={false}
-            blurOnSubmit={false}
-            onChangeText={handleUserAnswerChange}
-            value={userAnswer}
-            disabled={disabled}
-          />
-          {/* <div className="GameCard__inputIconContainer">{icon}</div> */}
+          <View style={styles.inputIconCell}>
+            <Input
+              //   ref={makeAnswerInputRef}
+              autoFocus
+              autoCapitalize="none"
+              autoCorrect={false}
+              blurOnSubmit={false}
+              onChangeText={handleUserAnswerChange}
+              value={userAnswer}
+              disabled={disabled}
+              style={[styles.input, inputStyle]}
+            />
+            <View style={styles.iconContainer}>{icon}</View>
+          </View>
           <SubmitButton onPress={handleSubmitClick} />
         </View>
       </CardItem>
@@ -96,6 +94,36 @@ const styles = StyleSheet.create({
     flex: 2
   },
   inputButtonCell: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  card: { marginTop: 0 },
+  inputIconCell: {
+    flex: 1,
+    position: 'relative'
+  },
+  iconContainer: {
+    position: 'absolute',
+    right: 0,
+    top: 15
+  },
+  icon: {
+    textAlign: 'right',
+    marginRight: 8
+  },
+  input: {
+    flex: 1,
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
+    marginRight: 8,
+    paddingRight: 20
+  },
+  inputCorrect: {
+    color: positiveGreen,
+    borderBottomColor: positiveGreen
+  },
+  inputIncorrect: {
+    color: negativeRed,
+    borderBottomColor: negativeRed
   }
 });
