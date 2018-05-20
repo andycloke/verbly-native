@@ -67,10 +67,13 @@ const GameCard = ({
       </CardItem>
       <CardItem bordered>
         <Text style={styles.flex1}>{person}</Text>
-        <View style={styles.flex2}>
+        <View style={[styles.flex2, styles.inputButtonCell]}>
           <Input
             //   ref={makeAnswerInputRef}
             autoFocus
+            autoCapitalize="none"
+            autoCorrect={false}
+            blurOnSubmit={false}
             onChangeText={handleUserAnswerChange}
             value={userAnswer}
             disabled={disabled}
@@ -91,5 +94,8 @@ const styles = StyleSheet.create({
   },
   flex2: {
     flex: 2
+  },
+  inputButtonCell: {
+    flexDirection: 'row'
   }
 });
