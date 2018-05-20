@@ -8,7 +8,8 @@ import {
   Title,
   Left,
   Body,
-  Right
+  Right,
+  Drawer
 } from 'native-base';
 import { Link } from 'react-router-native';
 
@@ -19,26 +20,44 @@ import TensesMenu from '../features/tenses/containers/TensesMenu';
 import VerbsMenu from '../features/verbs/containers/VerbsMenu';
 
 import MainMenuHeader from './MainMenuHeader';
+import Sidebar from './Sidebar';
 
-const MainMenu = () => {
-  return (
-    <React.Fragment>
-      <MainMenuHeader />
-      <Content>
-        <Tabs initialPage={2}>
-          <Tab heading="People">
-            <PeopleMenu />
-          </Tab>
-          <Tab heading="Tenses">
-            <TensesMenu />
-          </Tab>
-          <Tab heading="Verbs">
-            <VerbsMenu />
-          </Tab>
-        </Tabs>
-      </Content>
-    </React.Fragment>
-  );
-};
+class MainMenu extends React.PureComponent<void> {
+  drawer: any;
+  closeDrawer = () => {
+    this.drawer._root.close();
+  };
+  openDrawer = () => {
+    this.drawer._root.open();
+  };
+  render() {
+    return (
+      <Drawer
+        ref={ref => {
+          this.drawer = ref;
+        }}
+        content={<Sidebar />}
+        onClose={() => this.closeDrawer()}
+      >
+        <React.Fragment>
+          <MainMenuHeader openDrawer={this.openDrawer} />
+          <Content>
+            <Tabs initialPage={2}>
+              <Tab heading="People">
+                <PeopleMenu />
+              </Tab>
+              <Tab heading="Tenses">
+                <TensesMenu />
+              </Tab>
+              <Tab heading="Verbs">
+                <VerbsMenu />
+              </Tab>
+            </Tabs>
+          </Content>
+        </React.Fragment>
+      </Drawer>
+    );
+  }
+}
 
 export default MainMenu;
