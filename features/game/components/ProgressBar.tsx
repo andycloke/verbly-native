@@ -51,9 +51,9 @@ class ProgressBar extends React.PureComponent<Props, State> {
   }
 
   render() {
-    var fillWidth = this.state.progress.interpolate({
+    const fillWidth = this.state.progress.interpolate({
       inputRange: [0, 1],
-      outputRange: [0, 100]
+      outputRange: ['0%', '100%']
     });
     const { questionsCorrect, questionsCorrectTarget } = this.props;
     return (
