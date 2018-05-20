@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Link } from 'react-router-native';
 
 import {
   ACCENTED_LETTER_MAP,
   DISPLAY_CORRECT_ICON_DURATION,
-  INPUT_FUNCS_DELAY,
   AUDIO_OPTIONS
 } from '../../../core/features/game/constants';
 import { Props } from '../../../core/features/game/containers/Game';
@@ -80,6 +78,7 @@ class Game extends React.PureComponent<Props, State> {
   };
 
   focusAnswerInput = () => {
+    // TODO: this isnt working - think a bug in expo / RN in how refs are being handled
     this._gameCard.focus();
   };
 
