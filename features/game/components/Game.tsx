@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Text, Header, Content } from 'native-base';
 import { Link } from 'react-router-native';
 
 import {
@@ -23,7 +22,7 @@ class Game extends React.PureComponent<Props, State> {
   state = {
     showCorrectIcon: false
   };
-
+  _gameCard: any;
   timeout?: NodeJS.Timer;
   mounted?: boolean;
   componentDidMount() {
@@ -61,7 +60,7 @@ class Game extends React.PureComponent<Props, State> {
       //   this.blurAnswerInput();
     } else {
       this.props.newQuestion();
-      //   this.focusAnswerInput();
+      this.focusAnswerInput();
     }
   };
 
@@ -76,6 +75,14 @@ class Game extends React.PureComponent<Props, State> {
     this.addAccentedLetterToUserAnswer(letter);
   };
 
+  makeGameCardRef = (c: any) => {
+    this._gameCard = c;
+  };
+
+  focusAnswerInput = () => {
+    this._gameCard.focus();
+  };
+
   render() {
     const {
       tense,
@@ -88,13 +95,13 @@ class Game extends React.PureComponent<Props, State> {
     return (
       <View>
         <GameCard
+          ref={this.makeGameCardRef}
           correct={this.state.showCorrectIcon}
           incorrect={displayConjugations}
           tense={tense}
           person={person}
           verb={verb}
           handleUserAnswerChange={this.handleUserAnswerChange}
-          // makeAnswerInputRef={this.makeAnswerInputRef}
           englishInfinitive={englishInfinitive}
           userAnswer={userAnswer}
           disabled={displayConjugations}

@@ -1,14 +1,5 @@
 import * as React from 'react';
-import {
-  Header,
-  Text,
-  Title,
-  Subtitle,
-  Left,
-  Body,
-  Right,
-  Icon
-} from 'native-base';
+import { Header, Text, Title, Left, Body, Right, Icon } from 'native-base';
 import { Link } from 'react-router-native';
 
 import { pathToGame } from '../../../core/paths';
@@ -25,7 +16,6 @@ const MainMenuHeader = ({ openDrawer }: Props) => {
       </Left>
       <Body>
         <Title>Menu</Title>
-        <Subtitle>Verbly</Subtitle>
       </Body>
       <Right>
         <Link to={pathToGame()}>

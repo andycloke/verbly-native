@@ -3,17 +3,8 @@ import {
   Content,
   Tab,
   Tabs,
-  Header,
-  Text,
-  Title,
-  Left,
-  Body,
-  Right,
   Drawer
 } from 'native-base';
-import { Link } from 'react-router-native';
-
-import { pathToGame } from '../../../core/paths';
 
 import PeopleMenu from '../features/people/containers/PeopleMenu';
 import TensesMenu from '../features/tenses/containers/TensesMenu';
@@ -42,7 +33,7 @@ class MainMenu extends React.PureComponent<void> {
         <React.Fragment>
           <MainMenuHeader openDrawer={this.openDrawer} />
           <Content>
-            <Tabs initialPage={2}>
+            <Tabs initialPage={1}>
               <Tab heading="People">
                 <PeopleMenu />
               </Tab>

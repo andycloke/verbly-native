@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Card, Input, Text, CardItem, Icon } from 'native-base';
+import { View, TextInput, StyleSheet } from 'react-native';
+import { Card, Text, CardItem, Icon } from 'native-base';
 import { DISPLAY_TEXT } from '../../../core/constants/tenses';
 import SubmitButton from './SubmitButton';
 
@@ -12,7 +12,6 @@ type Props = {
   verb: string;
   person: string;
   handleUserAnswerChange: (newValue: string) => void;
-  //   makeAnswerInputRef: (input: TextField) => void;
   englishInfinitive: string;
   userAnswer: string;
   disabled: boolean;
@@ -24,66 +23,77 @@ type Props = {
 export const positiveGreen = '#52c952';
 const negativeRed = '#c10e0e';
 
-const GameCard = ({
-  tense,
-  person,
-  verb,
-  handleUserAnswerChange,
-  //   makeAnswerInputRef,
-  englishInfinitive,
-  userAnswer,
-  disabled,
-  correct,
-  incorrect,
-  handleSubmitClick
-}: Props) => {
-  let inputStyle = null;
-  let icon = null;
-  if (correct) {
-    inputStyle = styles.inputCorrect;
-    icon = <Icon name="checkmark" style={[styles.icon, styles.iconCorrect]} />;
-  } else if (incorrect) {
-    inputStyle = styles.inputIncorrect;
-    icon = <Icon name="close" style={[styles.icon, styles.iconIncorrect]} />;
+class GameCard extends React.PureComponent<Props> {
+  _input: any;
+  makeInputRef = (input: any) => {
+    this._input = input;
+  };
+  focus() {
+    this._input.focus();
   }
-  return (
-    <Card style={styles.card} noShadow>
-      <CardItem bordered>
-        <Text style={styles.flex1}>Tense</Text>
-        <Text style={styles.flex2}>
-          {tense ? DISPLAY_TEXT[tense].text : ''}
-        </Text>
-      </CardItem>
-      <CardItem bordered>
-        <Text style={styles.flex1}>Verb</Text>
-        <Text style={styles.flex2}>
-          {`${verb} ${englishInfinitive ? `- ${englishInfinitive}` : ''}`}
-        </Text>
-      </CardItem>
-      <CardItem bordered>
-        <Text style={styles.flex1}>{person}</Text>
-        <View style={[styles.flex2, styles.inputButtonCell]}>
-          <View style={styles.inputIconCell}>
-            <Input
-              //   ref={makeAnswerInputRef}
-              autoFocus
-              autoCapitalize="none"
-              autoCorrect={false}
-              blurOnSubmit={false}
-              onChangeText={handleUserAnswerChange}
-              value={userAnswer}
-              disabled={disabled}
-              style={[styles.input, inputStyle]}
-            />
-            <View style={styles.iconContainer}>{icon}</View>
-          </View>
-          <SubmitButton onPress={handleSubmitClick} />
-        </View>
-      </CardItem>
-    </Card>
-  );
-};
+  render() {
+    const {
+      tense,
+      person,
+      verb,
+      handleUserAnswerChange,
+      englishInfinitive,
+      userAnswer,
+      disabled,
+      correct,
+      incorrect,
+      handleSubmitClick
+    } = this.props;
+    let inputStyle = null;
+    let icon = null;
+    if (correct) {
+      inputStyle = styles.inputCorrect;
+      icon = (
+        <Icon name="checkmark" style={[styles.icon, styles.iconCorrect]} />
+      );
+    } else if (incorrect) {
+      inputStyle = styles.inputIncorrect;
+      icon = <Icon name="close" style={[styles.icon, styles.iconIncorrect]} />;
+    }
 
+    return (
+      <Card style={styles.card} noShadow>
+        <CardItem bordered>
+          <Text style={styles.flex1}>Tense</Text>
+          <Text style={styles.flex2}>
+            {tense ? DISPLAY_TEXT[tense].text : ''}
+          </Text>
+        </CardItem>
+        <CardItem bordered>
+          <Text style={styles.flex1}>Verb</Text>
+          <Text style={styles.flex2}>
+            {`${verb} ${englishInfinitive ? `- ${englishInfinitive}` : ''}`}
+          </Text>
+        </CardItem>
+        <CardItem bordered>
+          <Text style={styles.flex1}>{person}</Text>
+          <View style={[styles.flex2, styles.inputButtonCell]}>
+            <View style={styles.inputIconCell}>
+              <TextInput
+                ref={this.makeInputRef}
+                autoFocus
+                autoCapitalize="none"
+                autoCorrect={false}
+                blurOnSubmit={false}
+                onChangeText={handleUserAnswerChange}
+                value={userAnswer}
+                editable={!disabled}
+                style={[styles.input, inputStyle]}
+              />
+              <View style={styles.iconContainer}>{icon}</View>
+            </View>
+            <SubmitButton onPress={handleSubmitClick} />
+          </View>
+        </CardItem>
+      </Card>
+    );
+  }
+}
 export default GameCard;
 
 const styles = StyleSheet.create({
