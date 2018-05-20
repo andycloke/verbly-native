@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { List, Text } from 'native-base';
+import { List } from 'native-base';
 import { Props } from '../../../core/features/game/containers/Review';
 
 import ReviewRow from './ReviewRow';
 
-const SHOW_NEXT_ROW_DELAY = 10;
+const SHOW_NEXT_ROW_DELAY = 800;
 const N_ROWS = 5;
 
 type State = {
