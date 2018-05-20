@@ -20,6 +20,6 @@ export default FooterTabButton;
 
 const styles = StyleSheet.create({
   textHighlighted: {
-    color: 'blue'
+    color: '#007aff'
   }
 });
