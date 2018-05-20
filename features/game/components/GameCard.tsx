@@ -41,10 +41,10 @@ const GameCard = ({
   let icon = null;
   if (correct) {
     inputStyle = styles.inputCorrect;
-    icon = <Icon name="checkmark" color={positiveGreen} style={styles.icon} />;
+    icon = <Icon name="checkmark" style={[styles.icon, styles.iconCorrect]} />;
   } else if (incorrect) {
     inputStyle = styles.inputIncorrect;
-    icon = <Icon name="close" color={negativeRed} style={styles.icon} />;
+    icon = <Icon name="close" style={[styles.icon, styles.iconIncorrect]} />;
   }
   return (
     <Card style={styles.card} noShadow>
@@ -110,6 +110,12 @@ const styles = StyleSheet.create({
   icon: {
     textAlign: 'right',
     marginRight: 8
+  },
+  iconCorrect: {
+    color: positiveGreen
+  },
+  iconIncorrect: {
+    color: negativeRed
   },
   input: {
     flex: 1,
