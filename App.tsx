@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { NativeRouter, Route } from 'react-router-native';
-import { Container, Text } from 'native-base';
+import { Container } from 'native-base';
 
 import { pathToGame, pathToHome } from './core/paths';
 
