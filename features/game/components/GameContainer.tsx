@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Content } from 'native-base';
 
 import { Props } from '../../../core/features/game/containers/GameContainer';
-import { pathToHome } from '../../../core/paths';
 
 import Game from '../containers/Game';
 import Review from '../containers/Review';
