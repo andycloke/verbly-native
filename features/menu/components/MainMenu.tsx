@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Content, Drawer, Button, Text, FooterTab, Footer } from 'native-base';
+import { Content, Drawer, Footer } from 'native-base';
 
 import PeopleMenu from '../features/people/containers/PeopleMenu';
 import TensesMenu from '../features/tenses/containers/TensesMenu';
@@ -13,7 +13,7 @@ type State = {
   activeTabIndex: number;
 };
 
-class MainMenu extends React.PureComponent<void, State> {
+class MainMenu extends React.PureComponent<any, State> {
   state = {
     activeTabIndex: 1
   };
